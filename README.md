@@ -13,7 +13,7 @@ If the Makefile runs successfully it will produce an executable file named lapla
 This should produce output similar to
 
 
- iter #, maximum change =          48   9.8905092831600427E-003 \\
+ iter #, maximum change =          48   9.8905092831600427E-003 //
    0    0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
    0    1  0.00000E+00  2.36578E+00  4.73639E+00  7.11317E+00  9.49610E+00  1.18840E+01  1.42750E+01  1.66667E+01
    0    2  0.00000E+00  4.73457E+00  9.47784E+00  1.42322E+01  1.89977E+01  2.37722E+01  2.85521E+01  3.33333E+01
