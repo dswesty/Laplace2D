@@ -1,8 +1,8 @@
 # Laplace2D
-Fortran implementation of a 2D Laplace which is very similar to the 2D Poisson problem from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (2014) https://wgropp.cs.illinois.edu/usingmpiweb/ 
-These code in this repository demonstrates  how do solve the 2D Laplace equation in parallel using the finite difference method and a simple Jacobi iteration scheme along with the MPI message passing library to achieve a parallelism.  For details see "Using MPI" chapter 4.  The solution of the Laplace equation in this case yields the temperature field for a plate heated on two boundaries.  
+This code is a modern Fortran implementation of a 2D Laplace solver which is very similar to the 2D Poisson solver from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (2014) https://wgropp.cs.illinois.edu/usingmpiweb/ 
+These code in this repository demonstrates  how to solve the 2D Laplace equation in parallel, using the finite difference method and a simple a Jacobi iteration scheme, using the MPI message passing library to achieve a parallelism.  For details see "Using MPI" chapter 4.  The solution of the Laplace equation in this case yields the temperature field for a plate heated on two boundaries.  
 
-A makefile is included that will build the code assuming that an MPI implementation which provides an mpif90 script is present.    Both the MPICH (https://www.mpich.org) and Open MPI (https://www.open-mpi.org/) implentations of MPI should provide these scripts.  The code can be built on the Linux command command line with the command: 
+A makefile is included that will build the code assuming that an MPI implementation which provides an mpif90 script is present.    Both the MPICH (https://www.mpich.org) and Open MPI (https://www.open-mpi.org/) implentations of the MPI standard should provide these scripts.  The code can be built on the Linux command command line with the command: 
 
         make
 
