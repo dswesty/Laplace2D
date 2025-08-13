@@ -12,7 +12,7 @@ If the Makefile runs successfully it will produce an executable file named lapla
 
 This should produce output similar to
 
- -----------------------------------------------------
+
  iter #, maximum change =          48   9.8905092831600427E-003
    0    0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
    0    1  0.00000E+00  2.36578E+00  4.73639E+00  7.11317E+00  9.49610E+00  1.18840E+01  1.42750E+01  1.66667E+01
@@ -22,7 +22,7 @@ This should produce output similar to
    1    5  0.00000E+00  1.18774E+01  2.37636E+01  3.56608E+01  4.75691E+01  5.94864E+01  7.14092E+01  8.33333E+01
    1    6  0.00000E+00  1.42705E+01  2.85459E+01  4.28275E+01  5.71151E+01  7.14078E+01  8.57035E+01  1.00000E+02
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
- ------------------------------------------------------
+
 
 Indicating the code took 48 iteration to converge and had a residual of approximately 9.89e-3.   The rest of the table displays the temperature in each zone (including the boundaary conditions on the east and south sides of the mesh).
 You could also try running this replacing the 2 with 1 or 3 to try a single process or 3 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is a 1D slab decomposition (see "Using MPI" for details).    Given the small size of the problem it would make little sense to run this code with more processes and no attempt has been made to make this code bulletproof to deal with the event that the user tries to run with a larger number of processes.     
