@@ -1,6 +1,6 @@
 # Laplace2D
 Fortran implementation of 2D Laplace problem from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (2014) https://wgropp.cs.illinois.edu/usingmpiweb/ 
-This is a impelentation of the 2D Laplace demonstration problem from "Using MPI" whcih demonstrates 
+These code in this repository is an impelentation of a solution to the 2D Laplace problem from "Using MPI" whcih demonstrates 
 how do solve the 2D Laplace equation in parallel using finite differencing and a simple Jacobi iteration scheme along with the MPI message passing library to achieve a parallelism.   The solution of the Laplace equation in this case yields the temperature field
 for a plate heated on two boundaries.  
 
