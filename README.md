@@ -23,8 +23,8 @@ iter #, maximum change =          48   9.8905092831600427E-003
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
 
 
-Indicating the code took 48 iteration to converge and had a maximum change of approximately 9.89e-3 on thelast iteration.   The rest of the table displays the temperature in each 
-zone (including the boundaary conditions on the east and south sides of the mesh).
+Indicating the code took 48 iteration to converge and had a maximum temperature change over all zones of approximately 9.89e-3 on the last iteration.   The rest of the table displays the temperature in each 
+zone (including the boundaary conditions on the east and south sides of the mesh).   No effort has been made to be numerically rigorous in achieving this solution as the purpose of the code is to demonstrate how message passing works to achieve parallelism.
 You could also try running this replacing the 2 with 1 or 3 to try a single process or 3 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is a 1D slab decomposition (see "Using MPI" for details).    Given the small size of the problem it would make little sense to run this code with more processes and no attempt has been made to make this code bulletproof to deal with the event that the user tries to run with a larger number of processes.     
 
 The mesh size can be changed via the named constants NX and NY found in the problem_dims module located in the PROBLEM_DIMS_MOD.f90 file.    If the mesh size is made much larger than 6x6 you should probably comment out the output lines in the laplace.f90 program and add 
