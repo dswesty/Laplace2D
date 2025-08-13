@@ -9,13 +9,11 @@ A makefile is included that will build the code assuming that an MPI implementat
         make
 
 If the Makefile runs successfully it will produce an executable file named laplace.   This file 
-an be executed with two processes using the command:
+an be executed in parallel with two processes using the command:
 
          mpirun -n 2 laplace
 
-The executable is set to output a table showing the converged solution of the temperature field.   The problem is set to run a 6x6 mesh 
-but the mesh size can be changedin via the named constants NX and NY found in the problem_dims module locatedin the PROBLEM_DIMS_MOD.f90 
-file
+The executable is set to output a table showing the converged solution of the temperature field.   The problem is set to run with 2D mesh 6x6 in size.  The mesh size can be changed via the named constants NX and NY found in the problem_dims module locatedin the PROBLEM_DIMS_MOD.f90 file
 
 If the mesh size is made much larger than 6x6 you should probably comment out the output lines in the laplace.f90 program and add 
 your own output to a file for graphics purposes.
