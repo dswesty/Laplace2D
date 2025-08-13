@@ -11,7 +11,7 @@ If the Makefile runs successfully it will produce an executable file named lapla
          mpirun -np 2
 
 This should produce output similar to
-### H3
+###
 -----------------------------------------------------
  iter #, maximum change =          48   9.8905092831600427E-003
    0    0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
