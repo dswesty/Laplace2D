@@ -1,15 +1,14 @@
 # Laplace2D
 Fortran implementation of 2D Laplace problem from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (2014) https://wgropp.cs.illinois.edu/usingmpiweb/ 
 These code in this repository is an impelentation of a solution to the 2D Laplace problem from "Using MPI" whcih demonstrates 
-how do solve the 2D Laplace equation in parallel using finite differencing and a simple Jacobi iteration scheme along with the MPI message passing library to achieve a parallelism.   The solution of the Laplace equation in this case yields the temperature field
+how do solve the 2D Laplace equation in parallel using finite difference method and a simple Jacobi iteration scheme along with the MPI message passing library to achieve a parallelism.  The solution of the Laplace equation in this case yields the temperature field
 for a plate heated on two boundaries.  
 
-A makefile is included that will build the code assuming that an MPI implementation which provides an mpif90 script is present.    Both the MPICH and Open MPI implentations of MPI should provide these scripts.  The code can be built on the Linux command cline with the command: 
+A makefile is included that will build the code assuming that an MPI implementation which provides an mpif90 script is present.    Both the MPICH and Open MPI implentations of MPI should provide these scripts.  The code can be built on the Linux command command line with the command: 
 
         make
 
-If the Makefile runs successfully it will produce an executable file named laplace.   This file 
-can be executed in parallel with two processes using the command:
+If the Makefile runs successfully it will produce an executable file named laplace.   This file can then be executed in parallel with two processes using the command:
 
          mpirun -n 2 laplace
 
