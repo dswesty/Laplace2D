@@ -28,7 +28,9 @@ This should produce output similar to
 ```
  Number of iterations =         115
  Maximum change on last iteration =   9.3860688465952080E-007
- PE #  ROW        Temperature field
+--------------------------------------------------------
+  PE#  ROW        Temperature field
+ --------------------------------------------------------
    0    0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
    0    1  0.00000E+00  2.38095E+00  4.76190E+00  7.14285E+00  9.52381E+00  1.19048E+01  1.42857E+01  1.66667E+01
    0    2  0.00000E+00  4.76190E+00  9.52381E+00  1.42857E+01  1.90476E+01  2.38095E+01  2.85714E+01  3.33333E+01
@@ -44,12 +46,13 @@ the PE number (in column 1) and the row number (in column 2) followed by the tem
 zone of the row (including the boundary zones on the exterior of the mesh).   Since the table includes 
 boundary zones on each edge it is 8x8 in size instead of 6x6.
 
-You could also try running this replacing the 2 with 1 or 3 to try a single process or three 
-processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is 
-a 1D slab decomposition (see "Using MPI" for details).    Given the small size of the problem 
-it would make little sense to run this code with more processes and no attempt has been made 
-to make this  code bulletproof to deal with the event that the user tries to run with a larger 
-number of processes.     
+You could also try running this replacing the 2 in the mpirun command with 1 or 3 to execute 
+with a single process or three processes repectively. The problem is set to run with 2D 
+mesh 6x6 in size and the domain decomposition is a 1D slab decomposition (see 
+[Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) for details).    Given the small size 
+of the problem it would make little sense to run this code with more processes and no attempt has 
+been made  to make this  code bulletproof to deal with the event that the user tries to run with 
+a more than 6 processes.     
 
 ## Notes
 The mesh size can be changed via the named constants NX and NY found in the problem_dims 
