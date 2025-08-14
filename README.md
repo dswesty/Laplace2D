@@ -11,7 +11,7 @@ together with the MPI message passing library to achieve a parallelism.  For det
 chapter 4.  The solution of the Laplace equation in this case yields the temperature 
 field for a square plate heated on two boundaries.  
 
-## Builing and Execution
+## Building and Execution
 A makefile is included that will build the code assuming that an MPI implementation which 
 provides an mpif90 script is present.    Both the [MPICH](https://www.mpich.org) and the
 [Open MPI](https://www.open-mpi.org/) implentations of the MPI standard should provide 
