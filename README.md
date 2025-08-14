@@ -2,11 +2,11 @@
 
 ## Introduction
 This toy code is a modern Fortran implementation of a 2D Laplace equation solver which is very similar 
-to the 2D Poisson equation solver from [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) by Gropp, 
+to the 2D Poisson equation solver from [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) by Gropp, 
 Lusk, Skjellum, MIT Press (2014). The code in this repository demonstrates  how to solve the 
 2D Laplace equation in parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
 together with the MPI message passing library to achieve a parallelism.  For details see 
-[Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) 
+[Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) 
 chapter 4.  The solution of the Laplace equation in this case yields the temperature 
 field for a square plate heated on two boundaries.  
 
@@ -48,7 +48,7 @@ boundary zones on each edge it is 8x8 in size instead of 6x6.
 You could also try running this replacing the 2 in the mpirun command with 1 or 3 to execute 
 with a single process or three processes repectively. The problem is set to run with 2D 
 mesh 6x6 in size and the domain decomposition is a 1D slab decomposition (see 
-[Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) for details).    Given the small size 
+[Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) for details).    Given the small size 
 of the problem it would make little sense to run this code with more processes and no attempt has 
 been made  to make this  code bulletproof to deal with the event that the user tries to run with 
 a more than 6 processes.     
