@@ -236,7 +236,9 @@ program laplace_mpi_demo
                              ! PE 0 writes out table header information
       write(out_lun,*) 'Number of iterations =', iter_count
       write(out_lun,*) 'Maximum change on last iteration =',maxchange
-      write(out_lun,*) 'PE #  ROW        Temperature field'
+      write(out_lun,*) '--------------------------------------------------------'
+      write(out_lun,*) ' PE#  ROW        Temperature field'
+      write(out_lun,*) '--------------------------------------------------------'
   
       if(num_PEs == 1) then  ! If only 1 PE then upper boundary on i should include
                              !    the boundary zones
