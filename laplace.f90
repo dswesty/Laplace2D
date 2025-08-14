@@ -295,7 +295,7 @@ program laplace_mpi_demo
     !++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   
-  call MPI_FINALIZE(errorcode)                           ! Finalize MPI
+  call MPI_Finalize(errorcode)                           ! Finalize MPI
 
   stop 0
   
