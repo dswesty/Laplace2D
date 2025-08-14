@@ -54,6 +54,11 @@ of the problem it would make little sense to run this code with more processes a
 been made  to make this  code bulletproof to deal with the event that the user tries to run with 
 a more than 6 processes.     
 
+The Makefile has a clean target which will clean up the build files (the object and module files)
+and this can be executed on the Linux command line as
+
+    make clean
+
 ## Notes
 The mesh size can be changed via the named constants NX and NY found in the problem_dims 
 module located in the PROBLEM_DIMS_MOD.f90 file.    If the mesh size is made much larger 
