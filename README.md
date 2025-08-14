@@ -79,7 +79,7 @@ Uppercase MPI_ follwed by the capitalized remainder of the subroutine name.   Al
 floating point variables and floating point constants are encoded as double precision.
 
 ## License
-  All files in this repository were created in under the GPL-2.0 software license and are free for
-  use by the public.
+  All files in this repository were created in under the GPL-2.0 software license and are open source 
+  and free for use under the terms of the GPL-2.0 license.
   
 
