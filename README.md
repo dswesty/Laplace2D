@@ -67,8 +67,9 @@ your own output code to send the data to a file for graphics purposes.
 Note that no effort has been made to be rigorous in achieving this numerical
 solution as the purpose of the code is to demonstrate how message passing works to achieve 
 parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
-is not an efficient way to solve the Laplace equation for large problems.   For nmore details 
-on the finite difference method and Jacobi iteration consult [Finite Difference Methods for 
+is not an efficient way to solve the Laplace equation for large problems.   For a more detailed 
+description of the finite difference method and Jacobi iteration consult 
+[Finite Difference Methods for 
 Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://faculty.washington.edu/rjl/fdmbook/) 
 by Randall J. LeVeque, SIAM (2014).
 
