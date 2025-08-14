@@ -13,8 +13,8 @@ field for a square plate heated on two boundaries.
 ## Building and Execution
 A makefile is included that will build the code assuming that an MPI implementation which 
 provides an mpif90 script is present.    Both the [MPICH](https://www.mpich.org) and the
-[Open MPI](https://www.open-mpi.org/) implentations of the MPI standard should provide 
-these scripts.  The code can be built on the Linux command command line with the command: 
+[Open MPI](https://www.open-mpi.org/) implentations of the [MPI](https://www.mpi-forum.org/) standard should 
+provide these scripts.  The code can be built on the Linux command command line with the command: 
 
         make
 
