@@ -18,7 +18,7 @@ contains
     return
   end function boundary_cond_x
 
-  function boundary_cond_y(y) result(bcond)  ! Boundary conds. in X (east)
+  function boundary_cond_y(y) result(bcond)  ! Boundary conds. in Y (east)
     use real_kind, only: DT
     use problem_dims, only: YMAX
     implicit none
