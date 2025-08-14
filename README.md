@@ -68,4 +68,6 @@ is not an efficient way to solve the Laplace equation for large problems.
 ## Code Conventions
 
 Files containing modules are named in upper case, e.g. REAL_KIND_MOD.f90, while all other
-source code files are named lin lowercase.
+source code files are named lin lowercase.   All source code is written in modern Fortran
+using free form syntax.     Named constants, a.k.a. parameters, are encoded in uppercase 
+and all variables are encoded in lowercase.
