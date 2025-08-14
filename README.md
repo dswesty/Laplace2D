@@ -9,7 +9,7 @@ Lusk, Skjellum, MIT Press (2014). The code in this repository demonstrates  how 
 $$\nabla^2 T = 0$$ ,
 
 in parallel, using the finite difference method and a simple Jacobi iteration scheme, 
-together with the MPI message passing library to achieve a parallelism via spatial domain decomposition.   For 
+together with the [MPI](https://en.wikipedia.org/wiki/Message_Passing_Interface) message passing interface library to achieve a parallelism via spatial domain decomposition.   For 
 details see  [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) chapter 4.  The solution of the 
 Laplace equation in this case yields the temperature field for a square plate heated on two boundaries.  
 
