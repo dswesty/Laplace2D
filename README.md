@@ -37,8 +37,8 @@ This should produce output similar to
 indicating the code took 115 iterations to converge and had a maximum temperature change over 
 all zones of approximately 9.39e-7 on the last iteration.   The rest of the table displays 
 the PE number (in column 1) and the row number (in column 2) followed by the temperature in each 
-zone of the row (including the boundary zones on the exterior of the mesh).   
-Since the table includes boundary zones on each edge it is 8x8 in size instead of 6x6.
+zone of the row (including the boundary zones on the exterior of the mesh).   Since the table includes 
+boundary zones on each edge it is 8x8 in size instead of 6x6.
 
 You could also try running this replacing the 2 with 1 or 3 to try a single process or three 
 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is 
