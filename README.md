@@ -39,7 +39,7 @@ all zones of approximately 9.39e-7 on the last iteration.   The rest of the tabl
 the temperature in each zone (including the boundary conditions on the east and south sides 
 of the mesh).   Note that no effort has been made to be numerically rigorous in achieving this 
 solution as the purpose of the code is to demonstrate how message passing works to achieve 
-parallelism.   The Jacobi iteration scheme in this code doers not converge rapidly.
+parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly.
 You could also try running this replacing the 2 with 1 or 3 to try a single process or 3 
 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is 
 a 1D slab decomposition (see "Using MPI" for details).    Given the small size of the problem 
