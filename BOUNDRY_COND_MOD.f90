@@ -8,7 +8,7 @@ module boundary_cond
   implicit none
 contains
 
-  function boundary_cond_x(x) result(bcond)  ! Boundary conds. in X (south)
+  function boundary_cond_south(x) result(bcond)  ! Boundary conds. in X (south)
     use real_kind, only: DT
     use problem_dims, only: XMAX
     implicit none
@@ -16,9 +16,9 @@ contains
     real(kind=DT), intent(in) :: x
     bcond = 100.0d0*(x/XMAX)
     return
-  end function boundary_cond_x
+  end function boundary_cond_south
 
-  function boundary_cond_y(y) result(bcond)  ! Boundary conds. in Y (east)
+  function boundary_cond_east(y) result(bcond)  ! Boundary conds. in Y (east)
     use real_kind, only: DT
     use problem_dims, only: YMAX
     implicit none
@@ -26,6 +26,6 @@ contains
     real(kind=DT), intent(in) :: y
     bcond = 100.0d0*(y/YMAX)
     return
-  end function boundary_cond_y
+  end function boundary_cond_east
   
 end module boundary_cond

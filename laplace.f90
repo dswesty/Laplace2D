@@ -13,7 +13,7 @@ program laplace_mpi_demo
 
   use real_kind, only: DT
   use problem_dims, only: NX, NY, xcoords, ycoords
-  use boundary_cond, only: boundary_cond_x, boundary_cond_y
+  use boundary_cond, only: boundary_cond_east, boundary_cond_south
   use domain_decomp, only: is,ie,js,je, NGZ, left_pe, right_pe
 
   implicit none
@@ -117,7 +117,7 @@ program laplace_mpi_demo
 
   
   do i=is-NGZ,ie+NGZ                                    ! Set boundary conds.
-     t_old(i,je+NGZ) = boundary_cond_x(xcoords(i))
+     t_old(i,je+NGZ) = boundary_cond_east(xcoords(i))
      t_old(i,js-NGZ) = 0.0d0
   enddo
   if(my_rank == 0) then
@@ -125,12 +125,13 @@ program laplace_mpi_demo
   endif
   if(my_rank == num_pes-1) then
      do j=js-NGZ,je+NGZ
-        t_old(ie+NGZ,j) = boundary_cond_y(ycoords(j))
+        t_old(ie+NGZ,j) = boundary_cond_south(ycoords(j))
      enddo
   endif
      
-  t_new = t_old                                         ! Init bound conds. on
-                                                        ! new temperature
+  t_new = t_old                                         ! Initialize bound conds.
+                                                        ! on new temperature by
+                                                        ! copying whole array
 
 
 
