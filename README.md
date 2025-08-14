@@ -1,4 +1,6 @@
 # Laplace2D
+
+## Introduction
 This toy code is a modern Fortran implementation of a 2D Laplace solver which is very similar 
 to the 2D Poisson  solver from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (2014) 
 https://wgropp.cs.illinois.edu/usingmpiweb/  .
@@ -8,6 +10,7 @@ together with the MPI message passing library to achieve a parallelism.  For det
 "Using MPI" chapter 4.  The solution of the Laplace equation in this case yields the temperature 
 field for a square plate heated on two boundaries.  
 
+## Builing and Execution
 A makefile is included that will build the code assuming that an MPI implementation which 
 provides an mpif90 script is present.    Both the MPICH (https://www.mpich.org) and the
 Open MPI (https://www.open-mpi.org/) implentations of the MPI standard should provide 
@@ -47,6 +50,7 @@ it would make little sense to run this code with more processes and no attempt h
 to make this  code bulletproof to deal with the event that the user tries to run with a larger 
 number of processes.     
 
+## Notes
 The mesh size can be changed via the named constants NX and NY found in the problem_dims 
 module located in the PROBLEM_DIMS_MOD.f90 file.    If the mesh size is made much larger 
 than 6x6 you should probably comment out the output lines in the laplace.f90 program and add 
@@ -57,7 +61,7 @@ solution as the purpose of the code is to demonstrate how message passing works 
 parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
 is not an efficient way to solve the Laplace equation for large problems.
 
-Code Conventions
+## Code Conventions
 
 Files containing modules are named in upper case, e.g. REAL_KIND_MOD.f90, while all other
 source code files are named lin lowercase.
