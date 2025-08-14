@@ -21,7 +21,6 @@ can then be executed in parallel with two processes using the command:
          mpirun -n 2 laplace
 
 This should produce output similar to
-
 ```
  Number of iterations =         115
  Maximum change on last iteration =   9.3860688465952080E-007
@@ -35,11 +34,10 @@ This should produce output similar to
    1    6  0.00000E+00  1.42857E+01  2.85714E+01  4.28571E+01  5.71429E+01  7.14286E+01  8.57143E+01  1.00000E+02
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
 ```
-
-Indicating the code took 115 iterations to converge and had a maximum temperature change over 
+indicating the code took 115 iterations to converge and had a maximum temperature change over 
 all zones of approximately 9.39e-7 on the last iteration.   The rest of the table displays 
 the PE number (in column 1) and the row number (in column 2) followed by the temperature in each 
-zone of the row (including the boundary conditions on the east and south sides  of the mesh).   
+zone of the row (including the boundary zones on the exterior of the mesh).   
 Since the table includes boundary zones on each edge it is 8x8 in size instead of 6x6.
 
 You could also try running this replacing the 2 with 1 or 3 to try a single process or three 
