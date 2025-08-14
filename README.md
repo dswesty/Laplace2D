@@ -71,7 +71,7 @@ The convergence criterion for the Jacobi iteration simply checks the maximum cha
 to the next over all zones and comapares it to a named contant **JACOBI_TOLERANCE** which is set to 1.0e-6.
 
 Note that no effort has been made to be rigorous in achieving this numerical
-solution as the purpose of the code is to demonstrate how message passing works to achieve 
+solution as the primary purpose of the code is to demonstrate how message passing works to achieve 
 parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
 is not an efficient way to solve the Laplace equation for large problems.   For a more detailed 
 description of the finite difference method and Jacobi iteration consult 
