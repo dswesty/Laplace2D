@@ -34,7 +34,7 @@ This should produce output similar to
    1    6  0.00000E+00  1.42857E+01  2.85714E+01  4.28571E+01  5.71429E+01  7.14286E+01  8.57143E+01  1.00000E+02
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
 
-Indicating the code took 115 iteration to converge and had a maximum temperature change over 
+Indicating the code took 115 iterations to converge and had a maximum temperature change over 
 all zones of approximately 9.39e-7 on the last iteration.   The rest of the table displays 
 the temperature in each zone (including the boundary conditions on the east and south sides 
 of the mesh).   Note that no effort has been made to be numerically rigorous in achieving this 
