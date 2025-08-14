@@ -78,3 +78,8 @@ and all variables are encoded in lowercase.   All MPI subroutine references begi
 Uppercase MPI_ follwed by the capitalized remainder of the subroutine name.   All 
 floating point variables and floating point constants are encoded as double precision.
 
+## License
+  All files in this repository were created in under the GPL-2.0 software license and are free for
+  use by the public.
+  
+
