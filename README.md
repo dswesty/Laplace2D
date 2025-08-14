@@ -4,7 +4,7 @@ to the 2D Poisson  solver from "Using MPI" by Gropp, Lusk, Skjellum, MIT Press (
 https://wgropp.cs.illinois.edu/usingmpiweb/  .
 The code in this repository demonstrates  how to solve the 2D Laplace equation in 
 parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
-together the MPI message passing library to achieve a parallelism.  For details see 
+together with the MPI message passing library to achieve a parallelism.  For details see 
 "Using MPI" chapter 4.  The solution of the Laplace equation in this case yields the temperature 
 field for a plate heated on two boundaries.  
 
@@ -18,7 +18,7 @@ these scripts.  The code can be built on the Linux command command line with the
 If the Makefile runs successfully it will produce an executable file named laplace.   This file 
 can then be executed in parallel with two processes using the command:
 
-         mpirun -np 2
+         mpirun -n 2
 
 This should produce output similar to
 
