@@ -18,7 +18,7 @@ provide these scripts.  The code can be built on the Linux command command line 
 
         make
 
-If the Makefile runs successfully it will produce an executable file named laplace.   This file 
+If the Makefile runs successfully it will produce an executable file named **laplace**.   This file 
 can then be executed in parallel with two processes using the command:
 
          mpirun -n 2 laplace
