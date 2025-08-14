@@ -22,6 +22,7 @@ can then be executed in parallel with two processes using the command:
 
 This should produce output similar to
 
+```
  Number of iterations =         115
  Maximum change on last iteration =   9.3860688465952080E-007
  PE #  ROW        Temperature field
@@ -33,13 +34,13 @@ This should produce output similar to
    1    5  0.00000E+00  1.19048E+01  2.38095E+01  3.57143E+01  4.76190E+01  5.95238E+01  7.14286E+01  8.33333E+01
    1    6  0.00000E+00  1.42857E+01  2.85714E+01  4.28571E+01  5.71429E+01  7.14286E+01  8.57143E+01  1.00000E+02
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
+```
 
 Indicating the code took 115 iterations to converge and had a maximum temperature change over 
 all zones of approximately 9.39e-7 on the last iteration.   The rest of the table displays 
-the temperature in each zone (including the boundary conditions on the east and south sides 
-of the mesh).   Note that no effort has been made to be numerically rigorous in achieving this 
-solution as the purpose of the code is to demonstrate how message passing works to achieve 
-parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly.
+the PE number (in column 1) and the row number (in column 2) followed by the temperature in each 
+zone of the row (including the boundary conditions on the east and south sides  of the mesh).   
+Since the table includes boundary zones on each edge it is 8x8 in size instead of 6x6.
 
 You could also try running this replacing the 2 with 1 or 3 to try a single process or three 
 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is 
@@ -52,3 +53,8 @@ The mesh size can be changed via the named constants NX and NY found in the prob
 module located in the PROBLEM_DIMS_MOD.f90 file.    If the mesh size is made much larger 
 than 6x6 you should probably comment out the output lines in the laplace.f90 program and add 
 your own output to a file for graphics purposes.
+
+Note that no effort has been made to be rigorous in achieving this numerical
+solution as the purpose of the code is to demonstrate how message passing works to achieve 
+parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
+is not an efficient way to solve the Laplace equation for large problems.
