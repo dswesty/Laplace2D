@@ -22,22 +22,24 @@ can then be executed in parallel with two processes using the command:
 
 This should produce output similar to
 
-iter #, maximum change =          48   9.8905092831600427E-003
+ Number of iterations =         115
+ Maximum change on last iteration =   9.3860688465952080E-007
+ PE #  ROW        Temperature field
    0    0  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00  0.00000E+00
-   0    1  0.00000E+00  2.36578E+00  4.73639E+00  7.11317E+00  9.49610E+00  1.18840E+01  1.42750E+01  1.66667E+01
-   0    2  0.00000E+00  4.73457E+00  9.47784E+00  1.42322E+01  1.89977E+01  2.37722E+01  2.85521E+01  3.33333E+01
-   0    3  0.00000E+00  7.10877E+00  1.42284E+01  2.13619E+01  2.85092E+01  3.56677E+01  4.28330E+01  5.00000E+01
-   1    4  0.00000E+00  9.48972E+00  1.89903E+01  2.85047E+01  3.80330E+01  4.75725E+01  5.71187E+01  6.66667E+01
-   1    5  0.00000E+00  1.18774E+01  2.37636E+01  3.56608E+01  4.75691E+01  5.94864E+01  7.14092E+01  8.33333E+01
-   1    6  0.00000E+00  1.42705E+01  2.85459E+01  4.28275E+01  5.71151E+01  7.14078E+01  8.57035E+01  1.00000E+02
+   0    1  0.00000E+00  2.38095E+00  4.76190E+00  7.14285E+00  9.52381E+00  1.19048E+01  1.42857E+01  1.66667E+01
+   0    2  0.00000E+00  4.76190E+00  9.52381E+00  1.42857E+01  1.90476E+01  2.38095E+01  2.85714E+01  3.33333E+01
+   0    3  0.00000E+00  7.14285E+00  1.42857E+01  2.14286E+01  2.85714E+01  3.57143E+01  4.28571E+01  5.00000E+01
+   1    4  0.00000E+00  9.52381E+00  1.90476E+01  2.85714E+01  3.80952E+01  4.76190E+01  5.71429E+01  6.66667E+01
+   1    5  0.00000E+00  1.19048E+01  2.38095E+01  3.57143E+01  4.76190E+01  5.95238E+01  7.14286E+01  8.33333E+01
+   1    6  0.00000E+00  1.42857E+01  2.85714E+01  4.28571E+01  5.71429E+01  7.14286E+01  8.57143E+01  1.00000E+02
    1    7  0.00000E+00  1.66667E+01  3.33333E+01  5.00000E+01  6.66667E+01  8.33333E+01  1.00000E+02  1.16667E+02
 
-
-Indicating the code took 48 iteration to converge and had a maximum temperature change over 
-all zones of approximately 9.89e-3 on the last iteration.   The rest of the table displays 
-the temperature in each zone (including the boundaary conditions on the east and south sides 
-of the mesh).   No effort has been made to be numerically rigorous in achieving this solution 
-as the purpose of the code is to demonstrate how message passing works to achieve parallelism.
+Indicating the code took 115 iteration to converge and had a maximum temperature change over 
+all zones of approximately 9.39e-7 on the last iteration.   The rest of the table displays 
+the temperature in each zone (including the boundary conditions on the east and south sides 
+of the mesh).   Note that no effort has been made to be numerically rigorous in achieving this 
+solution as the purpose of the code is to demonstrate how message passing works to achieve 
+parallelism.   The Jacobi iteration scheme in this code doers not converge rapidly.
 You could also try running this replacing the 2 with 1 or 3 to try a single process or 3 
 processes. The problem is set to run with 2D mesh 6x6 in size and the domain decomposition is 
 a 1D slab decomposition (see "Using MPI" for details).    Given the small size of the problem 
