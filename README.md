@@ -78,7 +78,7 @@ Files containing modules are named in upper case, e.g. **REAL_KIND_MOD.f90**, wh
 source code files are named in lowercase.   All source code is written in modern Fortran
 using free form syntax.     Named constants, a.k.a. parameters, are encoded in uppercase 
 and all variables are encoded in lowercase.   All MPI subroutine references begin with
-Uppercase MPI_ follwed by the capitalized remainder of the subroutine name.   All 
+uppercase MPI_ follwed by the capitalized remainder of the subroutine name.   All 
 floating point variables and floating point constants are encoded as double precision.
 
 ## License
