@@ -14,16 +14,16 @@ program laplace_mpi_demo
   use real_kind, only: DT
   use problem_dims, only: NX, NY, xcoords, ycoords
   use boundary_cond, only: boundary_cond_x, boundary_cond_y
-  use domain_decomp, only: is,ie,js,je, NGZ, left_PE, right_PE
+  use domain_decomp, only: is,ie,js,je, NGZ, left_pe, right_pe
 
   implicit none
   include 'mpif.h'
 
                                                      ! Convergence tolerance for
                                                      ! Jacobi iteration
-  real(kind=DT), parameter :: jacobi_tolerance=1.0d-6
+  real(kind=DT), parameter :: JACOBI_TOLERANCE=1.0d-6
   
-  integer, parameter :: out_lun=0                    ! LUN for output
+  integer, parameter :: OUT_LUN=0                    ! LUN for output
   
   integer :: num_PEs                                 ! Number of MPI PEs
   integer :: my_rank                                 ! Rank in MPI communicator
@@ -72,15 +72,15 @@ program laplace_mpi_demo
 
 
   if(my_rank > 0) then                                  ! Set PEs to left &
-    left_PE = my_rank-1                                 ! right
+    left_pe = my_rank-1                                 ! right
   else
-    left_PE = -99
+    left_pe = -99
   endif
 
   if(my_rank < num_PEs-1) then
-    right_PE = my_rank+1
+    right_pe = my_rank+1
   else
-    right_PE = -100
+    right_pe = -100
   endif
 
   
@@ -135,34 +135,34 @@ program laplace_mpi_demo
 
 
 
-  do while( maxchange > jacobi_tolerance )    ! Beginning of Jacobi iter. loop
+  do while( maxchange > JACOBI_TOLERANCE )    ! Beginning of Jacobi iter. loop
 
                                                         ! Xchange bound. conds.
 
     if(my_rank > 0) then                                ! Send bound. data left
        sendbuff_left  = t_old(is,:)
        call MPI_Send(sendbuff_left, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     left_PE, msg_tag_left, MPI_COMM_WORLD,errorcode)
+                     left_pe, msg_tag_left, MPI_COMM_WORLD,errorcode)
 
     endif
 
     if(my_rank < num_PEs-1) then                        ! Send bound. data rght
        sendbuff_right = t_old(ie,:)
        call MPI_Send(sendbuff_right, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     right_PE, msg_tag_right, MPI_COMM_WORLD, errorcode)
+                     right_pe, msg_tag_right, MPI_COMM_WORLD, errorcode)
     endif
 
     
     if(my_rank > 0) then                                ! Rcv. bound. data left 
        call MPI_Recv(recvbuff_left, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     left_PE,msg_tag_right, MPI_COMM_WORLD, status, errorcode )
+                     left_pe,msg_tag_right, MPI_COMM_WORLD, status, errorcode )
             t_old(is-NGZ,:) = recvbuff_left             ! Unpack recv. buffer
     endif
 
 
     if(my_rank < num_PEs-1) then                        ! Rcv. bound. data rght
        call MPI_Recv(recvbuff_right, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     right_PE, msg_tag_left,  MPI_COMM_WORLD, status, errorcode)
+                     right_pe, msg_tag_left,  MPI_COMM_WORLD, status, errorcode)
             t_old(ie+NGZ,:) = recvbuff_right            !  Unpack rcv. buffer
     endif
 
@@ -200,20 +200,20 @@ program laplace_mpi_demo
                                                         ! left
        sendbuff_left  = t_old(is,:)
        call MPI_Send(sendbuff_left, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     left_PE, msg_tag_left, MPI_COMM_WORLD, errorcode )
+                     left_pe, msg_tag_left, MPI_COMM_WORLD, errorcode )
     endif
 
     if(my_rank < num_PEs-1) then                        ! Send boundary data
                                                         ! right
        sendbuff_right = t_old(ie,:)
        call MPI_Send(sendbuff_right, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     right_PE, msg_tag_right, MPI_COMM_WORLD, errorcode)
+                     right_pe, msg_tag_right, MPI_COMM_WORLD, errorcode)
     endif
 
     
     if(my_rank > 0) then                                ! Recv. boundary data
                                                         ! from left 
-       call MPI_Recv(recvbuff_left, NY+2*NGZ, MPI_DOUBLE_PRECISION, left_PE, &
+       call MPI_Recv(recvbuff_left, NY+2*NGZ, MPI_DOUBLE_PRECISION, left_pe, &
                      msg_tag_right, MPI_COMM_WORLD, status, errorcode)
             t_old(is-NGZ,:) = recvbuff_left             ! Unpack recv. buffer
     endif
@@ -222,7 +222,7 @@ program laplace_mpi_demo
     if(my_rank < num_PEs-1) then                        ! Recv. boundary data
                                                         ! from right
        call MPI_Recv(recvbuff_right, NY+2*NGZ, MPI_DOUBLE_PRECISION, &
-                     right_PE, msg_tag_left, MPI_COMM_WORLD, status, errorcode)
+                     right_pe, msg_tag_left, MPI_COMM_WORLD, status, errorcode)
             t_old(ie+NGZ,:) = recvbuff_right            ! Unpack receive buffer
     endif
 
@@ -234,11 +234,11 @@ program laplace_mpi_demo
     
     if(my_rank == 0) then
                              ! PE 0 writes out table header information
-      write(out_lun,*) 'Number of iterations =', iter_count
-      write(out_lun,*) 'Maximum change on last iteration =',maxchange
-      write(out_lun,*) '--------------------------------------------------------'
-      write(out_lun,*) ' PE#  ROW        Temperature field'
-      write(out_lun,*) '--------------------------------------------------------'
+      write(OUT_LUN,*) 'Number of iterations =', iter_count
+      write(OUT_LUN,*) 'Maximum change on last iteration =',maxchange
+      write(OUT_LUN,*) '--------------------------------------------------------'
+      write(OUT_LUN,*) ' PE#  ROW        Temperature field'
+      write(OUT_LUN,*) '--------------------------------------------------------'
   
       if(num_PEs == 1) then  ! If only 1 PE then upper boundary on i should include
                              !    the boundary zones
@@ -248,14 +248,14 @@ program laplace_mpi_demo
       endif
                              ! Output local slice of temperature array
       do i=is-NGZ,iub
-         write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
+         write(OUT_LUN,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
                                                   t_old(i,js-NGZ:je+NGZ)
       enddo
 
       seq_snd_buf = my_rank  ! Use my_rank as message to send to right
       if(num_PEs > 1) then   ! # PEs > 1 then all PEs send message to the right
       
-         call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_PE, &
+         call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_pe, &
                        msg_tag_seq, MPI_COMM_WORLD, errorcode)
       endif
       
@@ -263,29 +263,29 @@ program laplace_mpi_demo
                              ! message from left before doing any output to STDOUT
     elseif(0 < my_rank .and. my_rank < num_PEs-1) then
     
-      call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_PE,  &
+      call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_pe,  &
                     msg_tag_seq, MPI_COMM_WORLD, status, errorcode)
                     
                              ! Once message is received do output of local slice
                              ! of temperature array
       do i=is,ie
-         write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
+         write(OUT_LUN,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
                                                   t_old(i,js-NGZ:je+NGZ)
       enddo
                              ! Now send message to right signaling we are done
                              ! with output
       seq_snd_buf = my_rank
-      call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_PE,  &
+      call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_pe,  &
                     msg_tag_seq, MPI_COMM_WORLD,errorcode)
 
     else                     ! If rightmost PE use blocking receive
                              ! to wait for message from left signaling that
                              ! all others are done with output
     
-      call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_PE, &
+      call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_pe, &
                     msg_tag_seq, MPI_COMM_WORLD, status, errorcode)
       do i=is,ie+NGZ
-        write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank,i, &
+        write(OUT_LUN,'(i4,1x,i4,8(1x,es12.5))') my_rank,i, &
               t_old(i,js-NGZ:je+NGZ)
       enddo
       

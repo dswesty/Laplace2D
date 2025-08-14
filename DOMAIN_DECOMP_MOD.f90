@@ -9,7 +9,7 @@ module domain_decomp
   integer :: ie                                      ! End of i index
   integer :: js                                      ! Start of j index
   integer :: je                                      ! End of j index  
-  integer :: left_PE                                 ! Number of PE to left
-  integer :: right_PE                                ! Number of PE to right
+  integer :: left_pe                                 ! Number of PE to left
+  integer :: right_pe                                ! Number of PE to right
 end module domain_decomp
 
