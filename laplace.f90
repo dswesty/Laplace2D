@@ -1,12 +1,15 @@
 !2345678901234567890123456789012345678901234567890123456789012345678901234567890
-!  Program:  laplace
-!  Purpose:  Solve the Laplace equation
+!  Program:  laplace_mpi_demo
+!
+!  Purpose:  Demonstrate the use of MPI to solve the 2D Laplace equation in 
+!            parallel using MPI library for message passing between processes
+!
 !  Author:   F. Douglas Swesty
 !  Date:     8/13/25
-  
+!  
 !------------------------------------------------------------------------------
 
-program laplace
+program laplace_mpi_demo
 
   use real_kind, only: DT
   use problem_dims, only: NX, NY, xcoords, ycoords
@@ -16,6 +19,10 @@ program laplace
   implicit none
   include 'mpif.h'
 
+                                                     ! Convergence tolerance for
+                                                     ! Jacobi iteration
+  real(kind=DT), parameter :: jacobi_tolerance=1.0d-6
+  
   integer, parameter :: out_lun=0                    ! LUN for output
   
   integer :: num_PEs                                 ! Number of MPI PEs
@@ -128,7 +135,7 @@ program laplace
 
 
 
-  do while(maxchange > 1.0d-2)
+  do while( maxchange > jacobi_tolerance )    ! Beginning of Jacobi iter. loop
 
                                                         ! Xchange bound. conds.
 
@@ -183,7 +190,7 @@ program laplace
      
      iter_count = iter_count+1                          ! Incr. iter. counter
      
-  enddo
+  enddo                                   ! End of jacobi iteration loop
 
                                                         ! Do one final
                                                         !     exchange of
@@ -220,48 +227,68 @@ program laplace
     endif
 
 
-                                                  ! Output solution as a table
+    !  -------       This section does output in sequence starting from PE 0 ---- 
+    !  -------       in order to write a table of results to output lun      ----
+    !  -------       Blocking sends & receives are used to force execution   ----
+    !  -------       of PEs in sequence                                      ----
+    
     if(my_rank == 0) then
-      write(out_lun,*) '-----------------------------------------------------'
-      write(out_lun,*) 'iter #, maximum change =', iter_count, maxchange
-      if(num_PEs == 1) then
+                             ! PE 0 writes out table header information
+      write(out_lun,*) 'Number of iterations =', iter_count
+      write(out_lun,*) 'Maximum change on last iteration =',maxchange
+      write(out_lun,*) 'PE #  ROW        Temperature field'
+  
+      if(num_PEs == 1) then  ! If only 1 PE then upper boundary on i should include
+                             !    the boundary zones
         iub = ie+NGZ
-      else
+      else                   ! Otherwise i upper boundary is ie
         iub = ie
       endif
-
+                             ! Output local slice of temperature array
       do i=is-NGZ,iub
          write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
                                                   t_old(i,js-NGZ:je+NGZ)
       enddo
+
+      seq_snd_buf = my_rank  ! Use my_rank as message to send to right
+      if(num_PEs > 1) then   ! # PEs > 1 then all PEs send message to the right
       
-      seq_snd_buf = my_rank
-      
-      if(num_PEs > 1) then
          call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_PE, &
                        msg_tag_seq, MPI_COMM_WORLD, errorcode)
       endif
-         
+      
+                             ! If rank > 0 then use blocking receive to wait for 
+                             ! message from left before doing any output to STDOUT
     elseif(0 < my_rank .and. my_rank < num_PEs-1) then
+    
       call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_PE,  &
                     msg_tag_seq, MPI_COMM_WORLD, status, errorcode)
+                    
+                             ! Once message is received do output of local slice
+                             ! of temperature array
       do i=is,ie
          write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank, i,  &
                                                   t_old(i,js-NGZ:je+NGZ)
       enddo
+                             ! Now send message to right signaling we are done
+                             ! with output
       seq_snd_buf = my_rank
       call MPI_Send(seq_snd_buf, 1, MPI_DOUBLE_PRECISION, right_PE,  &
                     msg_tag_seq, MPI_COMM_WORLD,errorcode)
-    else
+
+    else                     ! If rightmost PE use blocking receive
+                             ! to wait for message from left signaling that
+                             ! all others are done with output
+    
       call MPI_Recv(seq_rcv_buf, 1, MPI_DOUBLE_PRECISION, left_PE, &
                     msg_tag_seq, MPI_COMM_WORLD, status, errorcode)
       do i=is,ie+NGZ
         write(out_lun,'(i4,1x,i4,8(1x,es12.5))') my_rank,i, &
               t_old(i,js-NGZ:je+NGZ)
       enddo
-      write(out_lun,*) '------------------------------------------------------'
+      
     endif
-
+     ! -------------- End of sequential output section -------------
 
 
   
@@ -269,4 +296,4 @@ program laplace
 
   stop 0
   
-end program laplace
+end program laplace_mpi_demo
