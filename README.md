@@ -4,7 +4,11 @@
 This toy code is a modern Fortran implementation of a 2D Laplace equation solver which is very similar 
 to the 2D Poisson equation solver from [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) by Gropp, 
 Lusk, Skjellum, MIT Press (2014). The code in this repository demonstrates  how to solve the 
-2D Laplace equation in parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
+2D Laplace equation,
+
+$$\nabla^2 T = 0$$ ,
+
+in parallel, using the finite difference method and a simple Jacobi iteration scheme, 
 together with the MPI message passing library to achieve a parallelism via spatial domain decomposition.   For 
 details see  [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/) chapter 4.  The solution of the 
 Laplace equation in this case yields the temperature field for a square plate heated on two boundaries.  
@@ -64,7 +68,7 @@ than 6x6 you should probably comment out the output lines in the **laplace.f90**
 your own output code to send the data to a file for graphics purposes.
 
 The convergence criterion for the Jacobi iteration simply checks the maximum change from one iteration
-to the next over all zones and comapares it to a named contant JACOBI_TOLERANCE which is set to 1.0e-6.
+to the next over all zones and comapares it to a named contant **JACOBI_TOLERANCE** which is set to 1.0e-6.
 
 Note that no effort has been made to be rigorous in achieving this numerical
 solution as the purpose of the code is to demonstrate how message passing works to achieve 
