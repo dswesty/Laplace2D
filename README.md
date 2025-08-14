@@ -2,10 +2,9 @@
 
 ## Introduction
 This toy code is a modern Fortran implementation of a 2D Laplace equation solver which is very similar 
-to the 2D Poisson  equation solver from [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0)  
-by Gropp, Lusk, Skjellum, MIT Press (2014) .
-The code in this repository demonstrates  how to solve the 2D Laplace equation in 
-parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
+to the 2D Poisson equation solver from [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) by Gropp, 
+Lusk, Skjellum, MIT Press (2014). The code in this repository demonstrates  how to solve the 
+2D Laplace equation in parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
 together with the MPI message passing library to achieve a parallelism.  For details see 
 [Using MPI](https://wgropp.cs.illinois.edu/usingmpiweb/0) 
 chapter 4.  The solution of the Laplace equation in this case yields the temperature 
