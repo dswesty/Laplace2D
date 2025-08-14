@@ -62,17 +62,20 @@ and this can be executed on the Linux command line as
 The mesh size can be changed via the named constants **NX** and **NY** found in the problem_dims 
 module located in the **PROBLEM_DIMS_MOD.f90** file.    If the mesh size is made much larger 
 than 6x6 you should probably comment out the output lines in the **laplace.f90** program and add 
-your own output to a file for graphics purposes.
+your own output code to send the data to a file for graphics purposes.
 
 Note that no effort has been made to be rigorous in achieving this numerical
 solution as the purpose of the code is to demonstrate how message passing works to achieve 
 parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
-is not an efficient way to solve the Laplace equation for large problems.
+is not an efficient way to solve the Laplace equation for large problems.   For nmore details 
+on the finite difference method and Jacobi iteration consult [Finite Difference Methods for 
+Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://faculty.washington.edu/rjl/fdmbook/) 
+by Randall J. LeVeque, SIAM (2014).
 
 ## Code Conventions
 
 Files containing modules are named in upper case, e.g. **REAL_KIND_MOD.f90**, while all other
-source code files are named lin lowercase.   All source code is written in modern Fortran
+source code files are named in lowercase.   All source code is written in modern Fortran
 using free form syntax.     Named constants, a.k.a. parameters, are encoded in uppercase 
 and all variables are encoded in lowercase.   All MPI subroutine references begin with
 Uppercase MPI_ follwed by the capitalized remainder of the subroutine name.   All 
