@@ -56,3 +56,8 @@ Note that no effort has been made to be rigorous in achieving this numerical
 solution as the purpose of the code is to demonstrate how message passing works to achieve 
 parallelism.   The Jacobi iteration scheme used in this code does not converge rapidly and
 is not an efficient way to solve the Laplace equation for large problems.
+
+Code Conventions
+
+Files containing modules are named in upper case, e.g. REAL_KIND_MOD.f90, while all other
+source code files are named lin lowercase.
