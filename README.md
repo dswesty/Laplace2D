@@ -60,9 +60,9 @@ and this can be executed on the Linux command line as
     make clean
 
 ## Notes
-The mesh size can be changed via the named constants NX and NY found in the problem_dims 
-module located in the PROBLEM_DIMS_MOD.f90 file.    If the mesh size is made much larger 
-than 6x6 you should probably comment out the output lines in the laplace.f90 program and add 
+The mesh size can be changed via the named constants **NX** and **NY** found in the problem_dims 
+module located in the **PROBLEM_DIMS_MOD.f90** file.    If the mesh size is made much larger 
+than 6x6 you should probably comment out the output lines in the **laplace.f90** program and add 
 your own output to a file for graphics purposes.
 
 Note that no effort has been made to be rigorous in achieving this numerical
@@ -72,7 +72,8 @@ is not an efficient way to solve the Laplace equation for large problems.
 
 ## Code Conventions
 
-Files containing modules are named in upper case, e.g. REAL_KIND_MOD.f90, while all other
+Files containing modules are named in upper case, e.g. **REAL_KIND_MOD.f90**, while all other
 source code files are named lin lowercase.   All source code is written in modern Fortran
 using free form syntax.     Named constants, a.k.a. parameters, are encoded in uppercase 
-and all variables are encoded in lowercase.
+and all variables are encoded in lowercase.   Are floating point variables and constants are
+double precision.
