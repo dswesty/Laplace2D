@@ -6,7 +6,7 @@ The code in this repository demonstrates  how to solve the 2D Laplace equation i
 parallel, using the finite difference method and a simple a Jacobi iteration scheme, 
 together with the MPI message passing library to achieve a parallelism.  For details see 
 "Using MPI" chapter 4.  The solution of the Laplace equation in this case yields the temperature 
-field for a plate heated on two boundaries.  
+field for a square plate heated on two boundaries.  
 
 A makefile is included that will build the code assuming that an MPI implementation which 
 provides an mpif90 script is present.    Both the MPICH (https://www.mpich.org) and the
